@@ -154,28 +154,51 @@ if [ -f "CLAUDE.md" ]; then
     # Check if task tracking section already exists
     if grep -q "## Task Tracking Workflow" CLAUDE.md; then
         echo -e "${YELLOW}⚠${NC}  Task Tracking Workflow section already exists in CLAUDE.md"
-        echo -e "${YELLOW}⚠${NC}  Skipping append (already installed)"
+        echo -e "${YELLOW}→${NC} Removing old section to update with latest version..."
+
+        # Remove everything from "## Task Tracking Workflow" to end of file
+        # Create backup first
+        cp CLAUDE.md CLAUDE.md.backup
+
+        # Use sed to remove from the task tracking section to EOF
+        sed -i.tmp '/^## Task Tracking Workflow/,$d' CLAUDE.md
+        rm -f CLAUDE.md.tmp
+
+        echo -e "${GREEN}✓${NC} Removed old Task Tracking Workflow section"
+    fi
+
+    # Append the task tracking template (always runs now)
+    echo -e "${GREEN}→${NC} Appending Task Tracking Workflow section to CLAUDE.md..."
+
+    # Add a newline before appending (if file doesn't end with newline)
+    [ -n "$(tail -c1 CLAUDE.md)" ] && echo "" >> CLAUDE.md
+
+    # Append the task tracking template
+    if [ -f "$SCRIPT_DIR/TASK_TRACKING_TEMPLATE.md" ]; then
+        # Template found locally (cloned repo)
+        cat "$SCRIPT_DIR/TASK_TRACKING_TEMPLATE.md" >> CLAUDE.md
+        echo -e "${GREEN}✓${NC} Appended Task Tracking Workflow section to CLAUDE.md"
+
+        # Remove backup if successful
+        rm -f CLAUDE.md.backup
     else
-        echo -e "${GREEN}→${NC} Appending Task Tracking Workflow section to CLAUDE.md..."
-
-        # Add a newline before appending (if file doesn't end with newline)
-        [ -n "$(tail -c1 CLAUDE.md)" ] && echo "" >> CLAUDE.md
-
-        # Append the task tracking template
-        if [ -f "$SCRIPT_DIR/TASK_TRACKING_TEMPLATE.md" ]; then
-            # Template found locally (cloned repo)
-            cat "$SCRIPT_DIR/TASK_TRACKING_TEMPLATE.md" >> CLAUDE.md
+        # Template not found locally, download from GitHub
+        echo -e "${YELLOW}→${NC} Downloading TASK_TRACKING_TEMPLATE.md from GitHub..."
+        if curl -sSL https://raw.githubusercontent.com/MakeApps/task-tracking/main/TASK_TRACKING_TEMPLATE.md >> CLAUDE.md; then
             echo -e "${GREEN}✓${NC} Appended Task Tracking Workflow section to CLAUDE.md"
+
+            # Remove backup if successful
+            rm -f CLAUDE.md.backup
         else
-            # Template not found locally, download from GitHub
-            echo -e "${YELLOW}→${NC} Downloading TASK_TRACKING_TEMPLATE.md from GitHub..."
-            if curl -sSL https://raw.githubusercontent.com/MakeApps/task-tracking/main/TASK_TRACKING_TEMPLATE.md >> CLAUDE.md; then
-                echo -e "${GREEN}✓${NC} Appended Task Tracking Workflow section to CLAUDE.md"
-            else
-                echo -e "${RED}✗${NC} Failed to download TASK_TRACKING_TEMPLATE.md from GitHub"
-                echo -e "${YELLOW}→${NC} Please check your internet connection and try again"
-                exit 1
+            echo -e "${RED}✗${NC} Failed to download TASK_TRACKING_TEMPLATE.md from GitHub"
+            echo -e "${YELLOW}→${NC} Please check your internet connection and try again"
+
+            # Restore backup on failure
+            if [ -f CLAUDE.md.backup ]; then
+                mv CLAUDE.md.backup CLAUDE.md
+                echo -e "${YELLOW}→${NC} Restored CLAUDE.md from backup"
             fi
+            exit 1
         fi
     fi
 else
