@@ -68,7 +68,7 @@ git commit -m "Add task tracking system"
 # 1. Run installer (creates task folders)
 ./init-task-tracking.sh
 
-# 2. In Claude Code: Run /init command
+# 2. In Claude Code: Run the init slash command
 # This analyzes your project and creates CLAUDE.md
 
 # 3. Run installer again (appends task tracking section)
@@ -258,7 +258,7 @@ git config --global user.name "Your Name"
 
 ### "CLAUDE.md not found"
 
-Run `/init` command in Claude Code first, then re-run installer.
+Run the init slash command in Claude Code first, then re-run installer.
 
 ### "Task tracking section already exists"
 

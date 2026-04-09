@@ -173,7 +173,7 @@ if [ -f "CLAUDE.md" ]; then
 else
     echo -e "${YELLOW}⚠️  CLAUDE.md not found in this project.${NC}\n"
     echo -e "${BLUE}To complete the setup:${NC}"
-    echo -e "  1. Run the ${GREEN}/init${NC} command in Claude Code to analyze this project"
+    echo -e "  1. In Claude Code, run the ${GREEN}init${NC} slash command to analyze this project"
     echo -e "  2. This will create CLAUDE.md with project-specific documentation"
     echo -e "  3. Then run this script again: ${GREEN}./init-task-tracking.sh${NC}"
     echo -e "  4. Task tracking section will be appended to CLAUDE.md\n"
