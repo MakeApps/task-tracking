@@ -14,6 +14,12 @@ A folder-based task tracking system for software development projects. Track wor
 
 ## Quick Start
 
+### Prerequisites
+
+1. **First**: Open your project in Claude Code and run `/init` command
+   - This creates `CLAUDE.md` with your project documentation
+2. **Then**: Run the installation script below
+
 ### Method 1: Automated Installation (Recommended)
 
 ```bash
@@ -49,36 +55,31 @@ chmod +x init-task-tracking.sh
 
 ## Installation Workflow
 
-### For Projects WITH Existing CLAUDE.md
+### Standard Installation (Recommended)
 
 ```bash
-# 1. Run installer (automatically appends task tracking section)
-./init-task-tracking.sh
+# Step 1: In Claude Code, run /init command
+# This analyzes your project and creates CLAUDE.md
 
-# 2. Commit changes
+# Step 2: Run the installer (in bash/terminal)
+./init-task-tracking.sh
+# This creates task/ folders and appends task tracking to CLAUDE.md
+
+# Step 3: Commit changes
 git commit -m "Add task tracking system"
 
-# 3. Start using
+# Step 4: Start using
 # Say "new task" to Claude Code!
 ```
 
-### For Projects WITHOUT CLAUDE.md (New Projects)
+### If You Already Have CLAUDE.md
 
 ```bash
-# 1. Run installer (creates task folders)
+# Just run the installer - it will append the task tracking section
 ./init-task-tracking.sh
 
-# 2. In Claude Code: Run the init slash command
-# This analyzes your project and creates CLAUDE.md
-
-# 3. Run installer again (appends task tracking section)
-./init-task-tracking.sh
-
-# 4. Commit everything
-git commit -m "Add project documentation and task tracking system"
-
-# 5. Start using
-# Say "new task" to Claude Code!
+# Commit changes
+git commit -m "Add task tracking system"
 ```
 
 ## What Gets Installed
