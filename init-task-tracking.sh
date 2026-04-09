@@ -163,11 +163,19 @@ if [ -f "CLAUDE.md" ]; then
 
         # Append the task tracking template
         if [ -f "$SCRIPT_DIR/TASK_TRACKING_TEMPLATE.md" ]; then
+            # Template found locally (cloned repo)
             cat "$SCRIPT_DIR/TASK_TRACKING_TEMPLATE.md" >> CLAUDE.md
             echo -e "${GREEN}✓${NC} Appended Task Tracking Workflow section to CLAUDE.md"
         else
-            echo -e "${RED}✗${NC} TASK_TRACKING_TEMPLATE.md not found in script directory"
-            echo -e "${YELLOW}→${NC} Please manually copy the task tracking section to CLAUDE.md"
+            # Template not found locally, download from GitHub
+            echo -e "${YELLOW}→${NC} Downloading TASK_TRACKING_TEMPLATE.md from GitHub..."
+            if curl -sSL https://raw.githubusercontent.com/MakeApps/task-tracking/main/TASK_TRACKING_TEMPLATE.md >> CLAUDE.md; then
+                echo -e "${GREEN}✓${NC} Appended Task Tracking Workflow section to CLAUDE.md"
+            else
+                echo -e "${RED}✗${NC} Failed to download TASK_TRACKING_TEMPLATE.md from GitHub"
+                echo -e "${YELLOW}→${NC} Please check your internet connection and try again"
+                exit 1
+            fi
         fi
     fi
 else
