@@ -4,13 +4,13 @@ A folder-based task tracking system for software development projects. Track wor
 
 ## Features
 
-✅ **Automatic Username Detection** - Extracts from git config (no manual input)
-✅ **Per-Developer Task Numbering** - Each developer maintains their own sequence
-✅ **Auto-Grouping** - Files sort alphabetically by developer
-✅ **Git-Native** - Uses existing git configuration
-✅ **Project-Agnostic** - Works with any language/framework
-✅ **AI-Friendly** - Designed for Claude Code and other AI assistants
-✅ **Zero Dependencies** - Pure bash script + markdown files
+- ✅ **Automatic Username Detection** - Extracts from git config (no manual input)
+- ✅ **Per-Developer Task Numbering** - Each developer maintains their own sequence
+- ✅ **Auto-Grouping** - Files sort alphabetically by developer
+- ✅ **Git-Native** - Uses existing git configuration
+- ✅ **Project-Agnostic** - Works with any language/framework
+- ✅ **AI-Friendly** - Designed for Claude Code and other AI assistants
+- ✅ **Zero Dependencies** - Pure bash script + markdown files
 
 ## Quick Start
 
