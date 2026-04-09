@@ -18,14 +18,14 @@ A folder-based task tracking system for software development projects. Track wor
 
 ```bash
 cd /path/to/your-project
-curl -sSL https://raw.githubusercontent.com/your-company/task-tracking-system/main/init-task-tracking.sh | bash
+curl -sSL https://raw.githubusercontent.com/MakeApps/task-tracking/main/init-task-tracking.sh | bash
 ```
 
 ### Method 2: Clone and Install
 
 ```bash
 # Clone this repository
-git clone https://github.com/your-company/task-tracking-system.git /tmp/task-tracking
+git clone https://github.com/MakeApps/task-tracking.git /tmp/task-tracking
 
 # Navigate to your project
 cd /path/to/your-project
@@ -38,7 +38,7 @@ cd /path/to/your-project
 
 ```bash
 # Download the installer
-curl -O https://raw.githubusercontent.com/your-company/task-tracking-system/main/init-task-tracking.sh
+curl -O https://raw.githubusercontent.com/MakeApps/task-tracking/main/init-task-tracking.sh
 
 # Make it executable
 chmod +x init-task-tracking.sh
@@ -220,7 +220,7 @@ If you prefer manual setup:
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/your-company/task-tracking-system.git
+git remote add origin https://github.com/MakeApps/task-tracking.git
 git push -u origin main
 ```
 
