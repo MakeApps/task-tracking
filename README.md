@@ -18,82 +18,27 @@ A folder-based task tracking system for software development projects. Track wor
 
 1. **First**: Open your project in Claude Code and run `/init` command
    - This creates `CLAUDE.md` with your project documentation
-2. **Then**: Run the installation script below
+2. **Then**: Run the installation command below
 
-### Method 1: Automated Installation (Recommended)
+### Installation
 
 ```bash
 cd /path/to/your-project
 curl -sSL https://raw.githubusercontent.com/MakeApps/task-tracking/main/init-task-tracking.sh | bash
 ```
 
-### Method 2: Clone and Install
-
-```bash
-# Clone this repository
-git clone https://github.com/MakeApps/task-tracking.git /tmp/task-tracking
-
-# Navigate to your project
-cd /path/to/your-project
-
-# Run installer
-/tmp/task-tracking/init-task-tracking.sh
-```
-
-### Method 3: Download and Run Locally
-
-```bash
-# Download the installer
-curl -O https://raw.githubusercontent.com/MakeApps/task-tracking/main/init-task-tracking.sh
-
-# Make it executable
-chmod +x init-task-tracking.sh
-
-# Run it
-./init-task-tracking.sh
-```
-
-## Installation Workflow
-
-### Standard Installation (Recommended)
-
-```bash
-# Step 1: In Claude Code, run /init command
-# This analyzes your project and creates CLAUDE.md
-
-# Step 2: Run the installer (in bash/terminal)
-./init-task-tracking.sh
-# This creates task/ folders and appends task tracking to CLAUDE.md
-
-# Step 3: Commit changes
-git commit -m "Add task tracking system"
-
-# Step 4: Start using
-# Say "new task" to Claude Code!
-```
-
-### If You Already Have CLAUDE.md
-
-```bash
-# Just run the installer - it will append the task tracking section
-./init-task-tracking.sh
-
-# Commit changes
-git commit -m "Add task tracking system"
-```
-
 ## What Gets Installed
-
-The installer creates:
 
 ```
 your-project/
-├── task/                              # Active tasks
+├── task/                              # Active tasks folder
 │   ├── README.md                      # Documentation
-│   └── completed_task/                # Archived tasks
+│   └── completed_task/                # Archived completed tasks
 │       └── README.md                  # Archive documentation
-└── CLAUDE.md                          # Updated with task tracking section
+└── CLAUDE.md                          # Updated with task tracking workflow
 ```
+
+After installation, just say **"new task"** to Claude Code to get started!
 
 ## Usage
 
@@ -129,125 +74,8 @@ task/
 
 ## Requirements
 
-- **Git**: Must be a git repository
-- **Git Config**: `user.name` or `user.email` configured
-- **Claude Code**: Recommended AI assistant (works with others too)
-
-## Configuration
-
-### Git Config Setup
-
-```bash
-# Set your name (required)
-git config --global user.name "Your Name"
-
-# Or set your email (fallback)
-git config --global user.email "you@example.com"
-```
-
-The system automatically:
-- Extracts username from `git config user.name`
-- Fallback to email username (before @) if name not set
-- Sanitizes: lowercase, removes spaces/special chars
-
-## Features in Detail
-
-### Automatic Username Detection
-
-No manual input required! The system automatically:
-
-1. Runs `git config user.name`
-2. Sanitizes the result (lowercase, remove spaces)
-3. Uses it for task files and branches
-
-Examples:
-- "Alice Smith" → "alicesmith"
-- "bob.jones" → "bobjones"
-- "dev-123" → "dev123"
-
-### Per-Developer Numbering
-
-Each developer maintains their own sequence:
-- Alice: 001, 002, 003...
-- Bob: 001, 002, 003...
-- Claude: 001, 002, 003...
-
-No conflicts! Multiple developers can create task-001 simultaneously.
-
-### File Organization
-
-Files automatically sort by developer:
-```bash
-# List all tasks by Alice
-ls task/task-alice-*
-
-# List all completed tasks by Bob
-ls task/completed_task/task-bob-*
-```
-
-## Manual Installation (Alternative)
-
-If you prefer manual setup:
-
-1. **Create folders:**
-   ```bash
-   mkdir -p task/completed_task
-   ```
-
-2. **Copy README files:**
-   ```bash
-   cp templates/task-README.md task/README.md
-   cp templates/completed-README.md task/completed_task/README.md
-   ```
-
-3. **Append to CLAUDE.md:**
-   ```bash
-   cat TASK_TRACKING_TEMPLATE.md >> CLAUDE.md
-   ```
-
-4. **Commit:**
-   ```bash
-   git add task/ CLAUDE.md
-   git commit -m "Add task tracking system"
-   ```
-
-## Distribution
-
-### For Your Company
-
-**Option A: Internal Git Repository**
-```bash
-# Host on GitHub/GitLab
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/MakeApps/task-tracking.git
-git push -u origin main
-```
-
-**Option B: Copy to Projects**
-```bash
-# Copy entire folder to new project
-cp -r task-tracking-system/ /path/to/new-project/
-cd /path/to/new-project
-./init-task-tracking.sh
-```
-
-**Option C: Shared Network Drive**
-- Place on company network drive
-- Share path with team
-- Run from network location
-
-## Updating
-
-To update all projects with new task tracking features:
-
-1. Update this repository
-2. Re-run installer in each project:
-   ```bash
-   ./init-task-tracking.sh
-   ```
-3. Installer is idempotent (safe to run multiple times)
+- Git repository with `user.name` or `user.email` configured
+- Claude Code (recommended AI assistant)
 
 ## Troubleshooting
 
@@ -271,29 +99,6 @@ Already installed! No action needed.
 chmod +x init-task-tracking.sh
 ```
 
-## Files in This Repository
-
-```
-task-tracking-system/
-├── README.md                      # This file
-├── TASK_TRACKING_TEMPLATE.md      # Task tracking documentation
-├── init-task-tracking.sh          # Automated installer
-└── templates/                     # README templates
-    ├── task-README.md             # For task/ folder
-    └── completed-README.md        # For completed_task/ folder
-```
-
-## Support
-
-For issues or questions:
-- Check documentation in `TASK_TRACKING_TEMPLATE.md`
-- Review examples in `task/README.md`
-- See workflow in your project's `CLAUDE.md`
-
-## License
-
-Internal company use. Modify as needed for your projects.
-
 ---
 
-**Ready to install?** Run `./init-task-tracking.sh` in your project directory!
+**Ready to install?** Run the installation command above in your project directory!
